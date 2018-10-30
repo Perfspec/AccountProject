@@ -1,11 +1,11 @@
-package com.Lewisw.AccountAppMavenJson;
+package com.Lewisw.Account_app_maven_json;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple Application.
  */
 public class AppTest 
     extends TestCase
@@ -29,7 +29,7 @@ public class AppTest
     }
 
     /**
-     * Rigourous Test :-)
+     * Rigorous Test :-)
      */
     public void testApp()
     {
