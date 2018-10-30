@@ -24,3 +24,5 @@ hs_err_pid*
 
 # Uneeded files on git
 *.settings
+/.metadata/
+/.recommenders/
