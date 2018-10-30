@@ -1,5 +1,5 @@
 projectKey=Account
 serverUrl=http://localhost:9000
 dashboardUrl=http://localhost:9000/dashboard/index/Account
-ceTaskId=AWbFYg5KCExJ6jE72v8O
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWbFYg5KCExJ6jE72v8O
+ceTaskId=AWbFiZUQCExJ6jE72v8Y
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWbFiZUQCExJ6jE72v8Y
