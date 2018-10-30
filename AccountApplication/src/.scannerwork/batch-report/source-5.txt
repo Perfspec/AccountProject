@@ -1,10 +1,12 @@
+package com.lewis;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Service {
 	private HashMap<String, Account> data;
 
-	public Service(HashMap<String, Account> db) {
-		data = (HashMap<String, Account>) db.clone();
+	public Service(Map<String, Account> db) {
+		data =  (HashMap<String, Account>) db;
 	}
 	
 	public void add(String id, Account acc) {
