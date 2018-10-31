@@ -20,8 +20,7 @@ public class ServiceManager {
 			if(acc.getFirstName().equals(nameToCheck)) {
 				countNames++;
 			}
-		}
-		
+		}		
 		return countNames;
 	}
 
