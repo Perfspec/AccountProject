@@ -1,8 +1,13 @@
 package com.Lewisw.Account_app_maven_json;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Service {
 	private Map<String, Account> data;
+	
+	public Service() {
+		data = new TreeMap<>();
+	}
 
 	public Service(Map<String, Account> db) {
 		data = db;
@@ -18,6 +23,10 @@ public class Service {
 	
 	public Account get(String id) {
 		return data.get(id);
+	}
+	
+	public Map<String,Account> getMap() {
+		return data;
 	}
 	
 

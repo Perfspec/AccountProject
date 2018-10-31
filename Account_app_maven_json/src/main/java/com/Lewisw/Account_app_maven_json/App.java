@@ -7,7 +7,11 @@ public class App
 	
     public static void main( String[] args )
     {
-    	// ee
+    	ServiceManager servManager = new ServiceManager();
+		
+		servManager.load();
+		
+    	System.out.println(servManager.findNum("John"));
     }
 }
 
