@@ -1,4 +1,4 @@
-package com.Lewisw.Persistence.Domain;
+package com.qa.persistence.domain;
 import java.util.Map;
 import java.util.TreeMap;
 

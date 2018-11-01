@@ -1,4 +1,4 @@
-package com.Lewisw.Persistence.Repository;
+package com.qa.persistence.repository;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
@@ -11,9 +11,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-
-import com.Lewisw.Persistence.Domain.Account;
-import com.Lewisw.Util.JSONUtil;
+import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
 public class AccountDBRepository implements AccountRepository {
@@ -30,7 +29,7 @@ public class AccountDBRepository implements AccountRepository {
 		return util.getJSONForObject(accounts);
 	}
 	
-	public String findAnAccount(Long id) {
+	public String findAnAccount(Integer id) {
 		Account accountInDB = findAccount(id);
 		return util.getJSONForObject(accountInDB);
 	}
@@ -43,7 +42,7 @@ public class AccountDBRepository implements AccountRepository {
 	}
 
 	@Transactional(REQUIRED)
-	public String updateAnAccount(Long id, String account) {
+	public String updateAnAccount(Integer id, String account) {
 		Account accountInDB = findAccount(id);
 		Account newAccount = util.getObjectForJSON(account, Account.class);
 		if (accountInDB != null) {
@@ -58,7 +57,7 @@ public class AccountDBRepository implements AccountRepository {
 	}
 	
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long id) {
+	public String deleteAccount(Integer id) {
 		Account accountInDB = findAccount(id);
 		if (accountInDB != null) {
 			manager.remove(accountInDB);
@@ -66,7 +65,7 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account sucessfully deleted\"}";
 	}
 
-	private Account findAccount(Long id) {
+	private Account findAccount(Integer id) {
 		return manager.find(Account.class, id);
 	}
 
@@ -77,6 +76,7 @@ public class AccountDBRepository implements AccountRepository {
 	public void setUtil(JSONUtil util) {
 		this.util = util;
 	}
+
 
 	
 

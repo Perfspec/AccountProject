@@ -1,4 +1,4 @@
-package com.Lewisw.Persistence.Domain;
+package com.qa.persistence.domain;
 
 public class ServiceManager {
 	

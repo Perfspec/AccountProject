@@ -1,14 +1,14 @@
-package com.Lewisw.Business;
+package com.qa.business;
 
 public interface AccountService {
 
 	String getAllAccounts();
 	
-	String findAccount(Long id);
+	String findAccount(Integer id);
 
 	String addAccount(String account);
 	
-	String updateAccount(Long id, String account);
+	String updateAccount(Integer id, String account);
 	
-	String deleteAccount(Long id);
+	String deleteAccount(Integer id);
 }

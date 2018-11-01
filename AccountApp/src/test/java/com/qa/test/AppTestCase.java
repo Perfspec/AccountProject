@@ -1,14 +1,14 @@
-package com.Lewisw.Account_app_maven_json;
+package com.qa.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-import com.Lewisw.Persistence.Domain.Account;
-import com.Lewisw.Persistence.Domain.ServiceManager;
-import com.Lewisw.Util.JSONUtil;
+import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.ServiceManager;
+import com.qa.util.JSONUtil;
 
 public class AppTestCase {
 	
