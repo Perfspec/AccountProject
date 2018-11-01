@@ -1,4 +1,4 @@
-package com.Lewisw.Domain;
+package com.Lewisw.Persistence.Domain;
 
 import javax.persistence.*;
 

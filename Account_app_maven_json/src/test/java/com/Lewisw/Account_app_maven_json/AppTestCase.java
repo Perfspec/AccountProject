@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.Lewisw.Domain.Account;
-import com.Lewisw.Domain.ServiceManager;
+import com.Lewisw.Persistence.Domain.Account;
+import com.Lewisw.Persistence.Domain.ServiceManager;
 import com.Lewisw.Util.JSONUtil;
 
 public class AppTestCase {
