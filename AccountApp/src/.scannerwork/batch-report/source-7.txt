@@ -1,32 +1,33 @@
 package com.qa.persistence.domain;
-
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Service {
-	private Map<Integer, Account> data;
+	private Map<String, Account> data;
 	
-	public Service(Map<Integer, Account> db) {
+	public Service() {
+		data = new TreeMap<>();
+	}
+
+	public Service(Map<String, Account> db) {
 		data = db;
 	}
 	
-	public Service() {
-		data = new HashMap<Integer, Account>(); 
-	}
-	
-	public void put(Integer id, Account acc) {
+	public void add(String id, Account acc) {
 		data.put(id, acc);
 	}
 	
-	public void rm(Integer id) {
+	public void rm(String id) {
 		data.remove(id);
 	}
 	
-	public Account get(Integer id) {
+	public Account get(String id) {
 		return data.get(id);
 	}
 	
-	public Map<Integer,Account> getMap() {
+	public Map<String,Account> getMap() {
 		return data;
 	}
+	
+
 }

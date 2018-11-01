@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.Lewisw</groupId>
-  <artifactId>AccountAppMavenJson</artifactId>
+  <artifactId>AccountApp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   

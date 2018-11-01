@@ -10,8 +10,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 
 import com.qa.persistence.domain.Account;
-import com.qa.persistence.domain.Service;
-import com.qa.persistence.domain.ServiceManager;
 import com.qa.util.JSONUtil;
 
 import static javax.transaction.Transactional.TxType.SUPPORTS;
@@ -25,12 +23,11 @@ import static javax.transaction.Transactional.TxType.REQUIRED;
 @Transactional(SUPPORTS)
 public class AccountMapRepository implements AccountRepository {
 	
-	
-	Integer counter = 0;
-	
+	private HashMap<Integer, Account> database= new HashMap<>();
+	private Integer counter = 0;
+		
 	@Inject
 	private JSONUtil util;
-	private HashMap<Integer,Account> database;
 		
 	public void loadInitialAccounts() {
 		database.put(1, new Account("Adonay", "Chrisson", "122112"));
@@ -45,6 +42,9 @@ public class AccountMapRepository implements AccountRepository {
 	@Override
 	public String getAllAccounts() {
 		try {
+			if(database.isEmpty()) {
+				loadInitialAccounts();
+			}
 			return util.getJSONForObject(database.values());
 		} catch(NullPointerException e) {
 			e.printStackTrace();
@@ -56,6 +56,9 @@ public class AccountMapRepository implements AccountRepository {
 	@Override
 	public String findAnAccount(Integer id) {
 		try {
+			if(database.isEmpty()) {
+				loadInitialAccounts();
+			}
 			return util.getJSONForObject(database.get(id));
 		} catch(NullPointerException e) {
 			e.printStackTrace();
@@ -68,6 +71,9 @@ public class AccountMapRepository implements AccountRepository {
 	@Transactional(REQUIRED)
 	public String createAccount(String account) {
 		try {
+			if(database.isEmpty()) {
+				loadInitialAccounts();
+			}
 			Account newAccount = util.getObjectForJSON(account, Account.class);
 			counter++;
 			database.put(counter, newAccount);
@@ -83,6 +89,9 @@ public class AccountMapRepository implements AccountRepository {
 	@Transactional(REQUIRED)
 	public String updateAnAccount(Integer id, String account) {
 		try {
+			if(database.isEmpty()) {
+				loadInitialAccounts();
+			}
 			Account newAccount = util.getObjectForJSON(account, Account.class);
 			if (id <= counter) {
 				database.put(id, newAccount);
@@ -101,6 +110,9 @@ public class AccountMapRepository implements AccountRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String deleteAccount(Integer id) {
+		if(database.isEmpty()) {
+			loadInitialAccounts();
+		}
 		if(database.containsKey(id)) {
 			database.remove(id);
 			if(!database.containsKey(id)) {

@@ -1,1 +1,1 @@
-0main/java/com/qa/persistence/domain/Account.java 2javaXA
+0main/java/com/qa/persistence/domain/Account.java 2javaX:

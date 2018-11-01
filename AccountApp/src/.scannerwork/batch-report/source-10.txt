@@ -5,7 +5,6 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
 
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +14,6 @@ import javax.transaction.Transactional;
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
-@Default
 @Transactional(SUPPORTS)
 public class AccountDBRepository implements AccountRepository {
 	
@@ -24,21 +22,18 @@ public class AccountDBRepository implements AccountRepository {
 
 	@Inject
 	private JSONUtil util;
-	
-	@Override
+
 	public String getAllAccounts() {
 		Query query = manager.createQuery("Select a FROM Account a");
 		Collection<Account> accounts = (Collection<Account>) query.getResultList();
 		return util.getJSONForObject(accounts);
 	}
 	
-	@Override
 	public String findAnAccount(Integer id) {
 		Account accountInDB = findAccount(id);
 		return util.getJSONForObject(accountInDB);
 	}
 	
-	@Override
 	@Transactional(REQUIRED)
 	public String createAccount(String account) {
 		Account newAccount = util.getObjectForJSON(account, Account.class);
@@ -46,7 +41,6 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account has been sucessfully added\"}";
 	}
 
-	@Override
 	@Transactional(REQUIRED)
 	public String updateAnAccount(Integer id, String account) {
 		Account accountInDB = findAccount(id);
@@ -62,7 +56,6 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 	
-	@Override
 	@Transactional(REQUIRED)
 	public String deleteAccount(Integer id) {
 		Account accountInDB = findAccount(id);
@@ -83,6 +76,7 @@ public class AccountDBRepository implements AccountRepository {
 	public void setUtil(JSONUtil util) {
 		this.util = util;
 	}
+
 
 	
 

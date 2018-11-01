@@ -3,9 +3,12 @@ package com.qa.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
+
 
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.domain.ServiceManager;
@@ -13,22 +16,36 @@ import com.qa.util.JSONUtil;
 
 public class AppTestCase {
 	
-	private ServiceManager serv;
-	
-	@Before
-	public void setUp() throws Exception {
-		serv = new ServiceManager();
-		serv.load();
-	}
+	private static BookDAL mockedBookDAL;
+	private static Book book1;
+	private static Book book2;
 
+	@BeforeClass
+	public static void setUp(){
+	  mockedBookDAL = mock(BookDAL.class);
+	  book1 = new Book("8131721019","Compilers Principles",
+           Arrays.asList("D. Jeffrey Ulman","Ravi Sethi", "Alfred V. Aho", "Monica S. Lam"),
+	          "Pearson Education Singapore Pte Ltd", 2008,1009,"BOOK_IMAGE");
+
+	  book2 = new Book("9788183331630","Let Us C 13th Edition",
+	            Arrays.asList("Yashavant Kanetkar"),"BPB PUBLICATIONS", 2012,675,"BOOK_IMAGE");
+    
+	  when(mockedBookDAL.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
+	  when(mockedBookDAL.getBook("8131721019")).thenReturn(book1);
+	  when(mockedBookDAL.addBook(book1)).thenReturn(book1.getIsbn());
+	  when(mockedBookDAL.updateBook(book1)).thenReturn(book1.getIsbn());
+
+	  }
 	
 	@Test
 	public void testServiceManager() {
-		assertEquals(4, serv.findNum("John"));
+		ServiceManager servManager = new ServiceManager();
+		servManager.load();
+		assertEquals(4, servManager.findNum("John"));
 	}
 	
 	@Test
-	public void whenJsonGotFromJava_thenCorrect() throws IOException {
+	public void whenJsonGotFromJavaThenCorrect() throws IOException {
 		Account acc = new Account("Adonay", "Chrisson", "122112");
 	    JSONUtil jsonObj = new JSONUtil();
 	    String expected = "{\"firstName\":\"Adonay\",\"lastName\":\"Chrisson\",\"accountNumber\":\"122112\"}";
@@ -36,7 +53,7 @@ public class AppTestCase {
 	}
 	
 	@Test
-	public void whenJavaGotFromJson_thenCorrect() throws IOException {
+	public void whenJavaGotFromJsonThenCorrect() throws IOException {
 		JSONUtil jsonObj = new JSONUtil();
 	    Account expected = new Account("Adonay", "Chrisson", "122112");
 	    String json = "{\"firstName\":\"Adonay\",\"lastName\":\"Chrisson\",\"accountNumber\":\"122112\"}";
@@ -46,5 +63,15 @@ public class AppTestCase {
 	    assertEquals(expected.getAccountNumber(), actual.getAccountNumber());
 	}
 	
+	@Test
+	public void testwhwhwh() {
+		List<String> mockList = mock(List.class);
+	    mockList.add("First");
+	    when(mockList.get(0)).thenReturn("Mockito");
+	    when(mockList.get(1)).thenReturn("JCG");
+	    assertEquals("Mockito", mockList.get(0));
+	    assertEquals("JCG", mockList.get(1));
+	  }
+
 	
 }

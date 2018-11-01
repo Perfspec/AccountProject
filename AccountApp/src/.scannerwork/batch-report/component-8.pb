@@ -1,1 +1,1 @@
-7main/java/com/qa/persistence/domain/ServiceManager.java 2javaX
+7main/java/com/qa/persistence/domain/ServiceManager.java 2javaX
