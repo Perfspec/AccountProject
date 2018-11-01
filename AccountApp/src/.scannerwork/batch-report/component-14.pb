@@ -1,0 +1,1 @@
+*main/java/com/qa/rest/AccountEndpoint.java 2javaX;
