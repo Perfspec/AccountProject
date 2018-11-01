@@ -13,12 +13,18 @@ public class AccountServiceImpl implements AccountService {
 		return repo.getAllAccounts();
 	}
 
-	@Override
+	public String findAccount(Long id) {
+		return repo.findAnAccount(id);
+	}
+
+	public String updateAccount(Long id, String account) {
+		return repo.updateAnAccount(id, account);
+	}
+	
 	public String addAccount(String account) {
 		return repo.createAccount(account);
 	}
 
-	@Override
 	public String deleteAccount(Long id) {
 		return repo.deleteAccount(id);
 	}
@@ -26,4 +32,5 @@ public class AccountServiceImpl implements AccountService {
 	public void setRepo(AccountRepository repo) {
 		this.repo = repo;
 	}
+
 }
