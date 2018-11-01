@@ -1,5 +1,4 @@
-package com.Lewisw.Account_app_maven_json;
-
+package com.Lewisw.Domain;
 
 public class ServiceManager {
 	
