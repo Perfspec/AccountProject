@@ -1,33 +1,32 @@
-package com.Lewisw.Persistence.Domain;
+package com.qa.persistence.domain;
+
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Service {
-	private Map<String, Account> data;
+	private Map<Integer, Account> data;
 	
-	public Service() {
-		data = new TreeMap<>();
-	}
-
-	public Service(Map<String, Account> db) {
+	public Service(Map<Integer, Account> db) {
 		data = db;
 	}
 	
-	public void add(String id, Account acc) {
+	public Service() {
+		data = new HashMap<Integer, Account>(); 
+	}
+	
+	public void put(Integer id, Account acc) {
 		data.put(id, acc);
 	}
 	
-	public void rm(String id) {
+	public void rm(Integer id) {
 		data.remove(id);
 	}
 	
-	public Account get(String id) {
+	public Account get(Integer id) {
 		return data.get(id);
 	}
 	
-	public Map<String,Account> getMap() {
+	public Map<Integer,Account> getMap() {
 		return data;
 	}
-	
-
 }

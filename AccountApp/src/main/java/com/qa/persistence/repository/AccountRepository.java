@@ -1,11 +1,11 @@
-package com.Lewisw.Persistence.Repository;
+package com.qa.persistence.repository;
 
 public interface AccountRepository {
 
 	String getAllAccounts();
-	String findAnAccount(Long id);
-	String createAccount(String accout);
-	String updateAnAccount(Long id, String account);
-	String deleteAccount(Long id);
+	String findAnAccount(Integer id);
+	String createAccount(String account);
+	String updateAnAccount(Integer id, String account);
+	String deleteAccount(Integer id);
 
 }

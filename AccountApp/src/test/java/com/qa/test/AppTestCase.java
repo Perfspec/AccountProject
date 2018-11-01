@@ -1,22 +1,30 @@
-package com.Lewisw.Account_app_maven_json;
+package com.qa.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import com.Lewisw.Persistence.Domain.Account;
-import com.Lewisw.Persistence.Domain.ServiceManager;
-import com.Lewisw.Util.JSONUtil;
+import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.ServiceManager;
+import com.qa.util.JSONUtil;
 
 public class AppTestCase {
 	
+	private ServiceManager serv;
+	
+	@Before
+	public void setUp() throws Exception {
+		serv = new ServiceManager();
+		serv.load();
+	}
+
+	
 	@Test
 	public void testServiceManager() {
-		ServiceManager servManager = new ServiceManager();
-		servManager.load();
-		assertEquals(4, servManager.findNum("John"));
+		assertEquals(4, serv.findNum("John"));
 	}
 	
 	@Test
@@ -37,5 +45,6 @@ public class AppTestCase {
 	    assertEquals(expected.getLastName(), actual.getLastName());
 	    assertEquals(expected.getAccountNumber(), actual.getAccountNumber());
 	}
+	
 	
 }

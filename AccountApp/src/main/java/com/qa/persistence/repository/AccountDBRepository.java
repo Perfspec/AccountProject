@@ -1,20 +1,21 @@
-package com.Lewisw.Persistence.Repository;
+package com.qa.persistence.repository;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
-import com.Lewisw.Persistence.Domain.Account;
-import com.Lewisw.Util.JSONUtil;
-
+@Default
 @Transactional(SUPPORTS)
 public class AccountDBRepository implements AccountRepository {
 	
@@ -23,18 +24,21 @@ public class AccountDBRepository implements AccountRepository {
 
 	@Inject
 	private JSONUtil util;
-
+	
+	@Override
 	public String getAllAccounts() {
 		Query query = manager.createQuery("Select a FROM Account a");
 		Collection<Account> accounts = (Collection<Account>) query.getResultList();
 		return util.getJSONForObject(accounts);
 	}
 	
-	public String findAnAccount(Long id) {
+	@Override
+	public String findAnAccount(Integer id) {
 		Account accountInDB = findAccount(id);
 		return util.getJSONForObject(accountInDB);
 	}
 	
+	@Override
 	@Transactional(REQUIRED)
 	public String createAccount(String account) {
 		Account newAccount = util.getObjectForJSON(account, Account.class);
@@ -42,8 +46,9 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account has been sucessfully added\"}";
 	}
 
+	@Override
 	@Transactional(REQUIRED)
-	public String updateAnAccount(Long id, String account) {
+	public String updateAnAccount(Integer id, String account) {
 		Account accountInDB = findAccount(id);
 		Account newAccount = util.getObjectForJSON(account, Account.class);
 		if (accountInDB != null) {
@@ -57,8 +62,9 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 	
+	@Override
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long id) {
+	public String deleteAccount(Integer id) {
 		Account accountInDB = findAccount(id);
 		if (accountInDB != null) {
 			manager.remove(accountInDB);
@@ -66,7 +72,7 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account sucessfully deleted\"}";
 	}
 
-	private Account findAccount(Long id) {
+	private Account findAccount(Integer id) {
 		return manager.find(Account.class, id);
 	}
 

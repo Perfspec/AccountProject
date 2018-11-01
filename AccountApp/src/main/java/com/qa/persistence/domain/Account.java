@@ -1,4 +1,4 @@
-package com.Lewisw.Persistence.Domain;
+package com.qa.persistence.domain;
 
 import javax.persistence.*;
 
@@ -15,7 +15,8 @@ public class Account {
 	@Column(length=6)
 	private String accountNumber;
 	
-		
+	public Account() {}
+	
 	public Account(String first, String last, String accNum) {
 		
 		this.firstName = first;
@@ -53,5 +54,12 @@ public class Account {
 	public void setAccountNumber(String a) {
 		accountNumber = a;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", accountNumber="
+				+ accountNumber + "]";
+	}
+	
 
 }

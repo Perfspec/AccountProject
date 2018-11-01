@@ -1,4 +1,4 @@
-package com.Lewisw.Rest;
+package com.qa.rest;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -9,8 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-
-import com.Lewisw.Business.AccountService;
+import com.qa.business.AccountService;
 
 @Path("/account")
 public class AccountEndpoint {
@@ -28,7 +27,7 @@ public class AccountEndpoint {
 	@Path("/findAccount/{id}")
 	@GET
 	@Produces({ "application/json" })
-	public String findAccount(@PathParam("id") Long id) {
+	public String findAccount(@PathParam("id") Integer id) {
 		return service.findAccount(id);
 	}
 
@@ -42,14 +41,14 @@ public class AccountEndpoint {
 	@Path("/updateAccount/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long id, String account) {
+	public String updateAccount(@PathParam("id") Integer id, String account) {
 		return service.updateAccount(id, account);
 	}
 
 	@Path("/deleteAccount/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long id) {
+	public String deleteAccount(@PathParam("id") Integer id) {
 		return service.deleteAccount(id);
 	}
 

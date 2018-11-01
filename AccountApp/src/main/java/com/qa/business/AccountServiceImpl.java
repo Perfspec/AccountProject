@@ -1,23 +1,24 @@
-package com.Lewisw.Business;
+package com.qa.business;
 
 import javax.inject.Inject;
 
-import com.Lewisw.Persistence.Repository.AccountRepository;
+import com.qa.persistence.repository.AccountRepository;
 
 public class AccountServiceImpl implements AccountService {
-
+	
 	@Inject
 	private AccountRepository repo;
 
 	public String getAllAccounts() {
+		
 		return repo.getAllAccounts();
 	}
 
-	public String findAccount(Long id) {
+	public String findAccount(Integer id) {
 		return repo.findAnAccount(id);
 	}
 
-	public String updateAccount(Long id, String account) {
+	public String updateAccount(Integer id, String account) {
 		return repo.updateAnAccount(id, account);
 	}
 	
@@ -25,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
 		return repo.createAccount(account);
 	}
 
-	public String deleteAccount(Long id) {
+	public String deleteAccount(Integer id) {
 		return repo.deleteAccount(id);
 	}
 

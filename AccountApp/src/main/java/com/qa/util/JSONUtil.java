@@ -1,4 +1,4 @@
-package com.Lewisw.Util;
+package com.qa.util;
 
 import com.google.gson.Gson;
 
